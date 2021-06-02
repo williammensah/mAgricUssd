@@ -9,7 +9,7 @@ use Log;
 use Validator;
 use App\ExternalServices\MomoTellerApi;
 
-class FarmerName extends ScreenSession
+class ConfirmFarmerName extends ScreenSession
 {
     /* You ask with the current menu name.
     eg. return Mobilenumber::ask(), current menu returned = enter_mobile_number

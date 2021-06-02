@@ -12,7 +12,7 @@ use App\Responses;
 use App\State\ClientState;
 use App\State\UserState;
 use Log;
-use App\Menus\SubMenus\FarmerName;
+use App\Menus\SubMenus\ConfirmFarmerName;
 
 class MainMenu
 {
@@ -39,7 +39,7 @@ class MainMenu
             $flow = 'register';
             $next = 'confirm_farmer_name';
             $state->setState($next, request()->all(), $flow);
-            return (new FarmerName)->fire($state);
+            return (new ConfirmFarmerName)->fire($state);
         }
         if (request()->userInput == $this->GET_ECASH) {
             $flow = 'get_ecash';

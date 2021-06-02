@@ -41,31 +41,31 @@ class SetupApplicationMenuCommand extends Command
         $menus = [
             [
                 'name' => 'main_menu',
-                'content' => "Welcome to <br>mAgric Farmer Onboarding<br>Are you a farmer ?. <br> 1.Yes<br> 2.No ",
+                'content' => "Welcome to  mAgric Farmer Onboarding" .PHP_EOL ."Are you a farmer".PHP_EOL. "1.Yes". PHP_EOL."2.No",
             ],
             [
                 'name' => 'confirm_farmer_name',
-                'content' => "Name : {name} <br> <br>1. Confirm 2. Cancel<br>",
+                'content' => "Name : {name}".PHP_EOL."1. Confirm".PHP_EOL."2. Cancel",
             ],
             [
                 'name' => 'select_type_of_crop',
-                'content' => "Select type of crop <br>1.Cocoa <br>2.Cashew <br> 3.Coffee <br> 4.Other ",
+                'content' => "Select type of crop".PHP_EOL."1.Cocoa" .PHP_EOL."2.Cashew".PHP_EOL."3.Coffee".PHP_EOL."4.Other",
             ],
             [
                 'name' => 'select_other_crop',
-                'content' => "Enter crop type <br>",
+                'content' => "Enter crop type".PHP_EOL,
             ],
             [
                 'name' => 'select_quantity_of_last_safe',
-                'content' => "Select quantity of last safe <br> <br>1. 0 - 54kg <br>2. 55 - 124kg<br>3. 125 - 254kg<br>4. 255 - 500kg<br>5. Greater than 500kg",
+                'content' => "Select quantity of last safe".PHP_EOL."1. 0 - 54kg ".PHP_EOL."2. 55 - 124kg".PHP_EOL."3. 125 - 254kg".PHP_EOL."4. 255 - 500kg".PHP_EOL."5. Greater than 500kg",
             ],
             [
                 'name' => 'enter_location',
-                'content' => "Enter location of your farm <br>",
+                'content' => "Enter location of your farm".PHP_EOL,
             ],
             [
                 'name' => 'confirmation_messsage',
-                'content' => "You have been successfully registered as a farmer <br>.Thank you <br>",
+                'content' => "You have been successfully registered as a farmer".PHP_EOL."Thank you",
             ],
         ];
         \DB::table('menus')->delete();

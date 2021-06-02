@@ -13,7 +13,7 @@ use App\Menus\SubMenus\MobileWalletNetwork;
 use App\Menus\SubMenus\MobileWalletNumber;
 use App\Menus\SubMenus\TransactionHistory;
 use App\Menus\SubMenus\TransactionProcessing;
-use App\Menus\SubMenus\FarmerName;
+use App\Menus\SubMenus\ConfirmFarmerName;
 use App\Menus\SubMenus\SelectTypeOfCrop;
 use App\Menus\SubMenus\SelectQuantityOfLastSafe;
 use App\Menus\SubMenus\Location;
@@ -40,7 +40,7 @@ trait MapMenus
                 'ROOT' => ['class' => MainMenu::class, 'next' => null],
             ],
             'register' => [
-                'confirm_farmer_name' =>['class' =>FarmerName::class,'next' => 'select_type_of_crop'],
+                'confirm_farmer_name' =>['class' =>ConfirmFarmerName::class,'next' => 'select_type_of_crop'],
                 'select_type_of_crop' =>['class' => SelectTypeOfCrop::class,'next'=>'select_quantity_of_last_safe'],
                 'select_quantity_of_last_safe'=>['class' => SelectQuantityOfLastSafe::class,'next'=>'enter_location'],
                 'enter_location'=>['class' =>Location::class,'next'=>'confirmation_messsage'],
