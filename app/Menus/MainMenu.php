@@ -41,27 +41,7 @@ class MainMenu
             $state->setState($next, request()->all(), $flow);
             return (new ConfirmFarmerName)->fire($state);
         }
-        if (request()->userInput == $this->GET_ECASH) {
-            $flow = 'get_ecash';
-            $next = 'mobile_wallet_network';
-            $state->setState($next, request()->all(), $flow);
-            return (new MobileWalletNetwork)->fire($state);
-        }
-        if (request()->userInput == $this->CASH_DEPOSIT) {
-            $flow = 'cash_deposit';
-            $next = 'enter_account_number';
-            $state->setState($next, request()->all(), $flow);
-            return (new AccountNumber)->fire($state);
-        }
-        if (request()->userInput == $this->CASH_WITHDRAWAL) {
-            return $this->response($this->sendEcashMenu);
-        }
-        if (request()->userInput == $this->HISTORY) {
-            $flow = 'history';
-            $next = 'transaction_history';
-            $state->setState($next, request()->all(), $flow);
-            return (new TransactionHistory)->fire($state);
-        }
+    
         if ($next && $next === 'main_menu' || $next === 'ROOT') {
             return $this->index();
         }
