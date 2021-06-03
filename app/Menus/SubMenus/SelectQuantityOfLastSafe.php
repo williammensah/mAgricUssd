@@ -22,7 +22,9 @@ class SelectQuantityOfLastSafe extends ScreenSession
         ]);
         if ($validator->fails()) {
             Log::info('Validator failed for selecting  quantity of safe', [$validator->errors()]);
-            return $this->response($this->invalidInput(), $this->menuName);
+            $content = $this->getMenuContent('select_quantity_of_last_safe');
+            //$this->invalidInput();
+            return $this->response($content, $this->menuName);
         }
         (new ClientState)->setState($next, request()->all(), $state['flow']);
         (new UserState)->store(['lastSafe' => request()->userInput]);

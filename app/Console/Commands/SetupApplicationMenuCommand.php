@@ -67,6 +67,10 @@ class SetupApplicationMenuCommand extends Command
                 'name' => 'confirmation_messsage',
                 'content' => "You have been successfully registered as a farmer".PHP_EOL."Thank you",
             ],
+            [
+                'name' => 'validation_screen',
+                'content' => "{CustomValidationMessage}".PHP_EOL."1.Retry".PHP_EOL."2. Cancel",
+            ],
         ];
         \DB::table('menus')->delete();
         \DB::table('menus')->insert($menus);

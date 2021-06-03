@@ -17,12 +17,14 @@ class SelectTypeOfCrop extends ScreenSession
     public $menuName = 'select_type_of_crop';
     public function processUserInput($next, $state, $back)
     {
+
         $validator = Validator::make(request()->all(), [
             'userInput' => 'required|in:1,2,3,4'
         ]);
         if ($validator->fails()) {
             Log::info('Validator failed for selecting type of crop', [$validator->errors()]);
-            return $this->response($this->invalidInput(), $this->menuName);
+            $content = $this->getMenuContent('select_type_of_crop');
+            return $this->response($content, $this->menuName);
         }
 
         if (request()->userInput == $this->OTHERCROP) {

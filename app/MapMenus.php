@@ -9,6 +9,7 @@ use App\Menus\SubMenus\SelectQuantityOfLastSafe;
 use App\Menus\SubMenus\Location;
 use App\Menus\SubMenus\ConfirmationMessage;
 use App\Menus\SubMenus\SelectOtherCrop;
+use App\Menus\SubMenus\ValidationMessage;
 
 trait MapMenus
 {
@@ -35,7 +36,9 @@ trait MapMenus
                 'select_quantity_of_last_safe'=>['class' => SelectQuantityOfLastSafe::class,'next'=>'enter_location'],
                 'enter_location'=>['class' =>Location::class,'next'=>'confirmation_messsage'],
                 'confirmation_messsage' =>['class' => ConfirmationMessage::class,'next'=>''],
-                'select_other_crop' =>['class' => SelectOtherCrop::class,'next'=>'select_quantity_of_last_safe']
+                'select_other_crop' =>['class' => SelectOtherCrop::class,'next'=>'select_quantity_of_last_safe'],
+                'validation_screen'=>['class' => ValidationMessage::class,'next' => ''],
+
             ],
 
         ];

@@ -7,6 +7,7 @@ use App\State\ClientState;
 use App\State\UserState;
 use Log;
 use Validator;
+use App\Menus\SubMenus\ValidationMessage;
 use App\ExternalServices\MomoTellerApi;
 
 class ConfirmFarmerName extends ScreenSession
@@ -21,23 +22,19 @@ class ConfirmFarmerName extends ScreenSession
     {
         Log::info('confirm farmer name Ask');
         $userState = (new UserState)->getState();
-        $famerName = (new MomoTellerApi)->lookupFarmer();
-
-        $content = $this->getMenuContent('confirm_farmer_name');
-        $output = str_replace(['{name}'],[$famerName['farmerName'],''], $content);
+        $output  = $this->callApi();
         return $this->response($output, $this->menuName);
-
     }
 
     public function processUserInput($next, $state, $back)
     {
-
         $validator = Validator::make(request()->all(), [
             'userInput' => 'required|in:1,2'
         ]);
         if ($validator->fails()) {
             Log::info('Validator failed for selecting Farmer Name', [$validator->errors()]);
-            return $this->response($this->invalidInput(), $this->menuName);
+            $output = $this->callApi();
+            return $this->response($output, $this->menuName);
         }
 
         if (request()->userInput == $this->CONFIRM) {
@@ -50,6 +47,17 @@ class ConfirmFarmerName extends ScreenSession
             Log::info('Confirm Farmer - cancelled');
             return $this->endSession("Exiting", $this->menuName);
         }
+    }
 
+    private function callApi()
+    {
+        try {
+            $famerName = (new MomoTellerApi)->lookupFarmer();
+            $content = $this->getMenuContent('confirm_farmer_name');
+            $output = str_replace(['{name}'], [$famerName['farmerName'],''], $content);
+            return $output;
+        } catch (\Throwable $th) {
+            \Log::error("An error occurred retrieving  farmerName from api ",[$th]);
+        }
     }
 }
