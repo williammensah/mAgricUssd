@@ -44,7 +44,7 @@ class ConfirmFarmerName extends ScreenSession
         }
 
         if (request()->userInput == $this->CANCEL) {
-            Log::info('Confirm Farmer - cancelled');
+            Log::info('Farmer session ended - cancelled');
             return $this->endSession("Exiting", $this->menuName);
         }
     }
