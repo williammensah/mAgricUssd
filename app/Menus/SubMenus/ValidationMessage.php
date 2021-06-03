@@ -30,7 +30,7 @@ class ValidationMessage extends ScreenSession
             'userInput' => 'required'
         ]);
         if ($validator->fails()) {
-            Log::info('Validator failed for selecting type of crop', [$validator->errors()]);
+            Log::info('Validator failed for selecting otherCrop', [$validator->errors()]);
             return $this->response($this->invalidInput(), $this->menuName);
         }
 

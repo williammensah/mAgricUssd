@@ -21,7 +21,7 @@ class SelectQuantityOfLastSafe extends ScreenSession
             'userInput' => 'required|in:1,2,3,4,5',
         ]);
         if ($validator->fails()) {
-            Log::info('Validator failed for selecting  quantity of safe', [$validator->errors()]);
+            Log::info('Validator failed for selecting quantity of safe', [$validator->errors()]);
             $content = $this->getMenuContent('select_quantity_of_last_safe');
             //$this->invalidInput();
             return $this->response($content, $this->menuName);

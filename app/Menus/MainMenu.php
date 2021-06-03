@@ -53,7 +53,8 @@ class MainMenu
         }
         if (request()->userInput == $this->CANCEL) {
             Log::info('Menu Cancelled - cancelled');
-            return $this->endSession('main_menu');
+           // return $this->endSession("You have cancelled the request", 'main_menu');
+           return $this->endSession();
         }
 
         if ($next && $next === 'main_menu' || $next === 'ROOT') {
