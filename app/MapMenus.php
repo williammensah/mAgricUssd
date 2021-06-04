@@ -38,7 +38,6 @@ trait MapMenus
                 'confirmation_messsage' =>['class' => ConfirmationMessage::class,'next'=>''],
                 'select_other_crop' =>['class' => SelectOtherCrop::class,'next'=>'select_quantity_of_last_safe'],
                 'validation_screen'=>['class' => ValidationMessage::class,'next' => ''],
-
             ],
 
         ];

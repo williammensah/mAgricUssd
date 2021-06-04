@@ -6,6 +6,8 @@ use App\Console\Commands\RefreshMenusCommand;
 use App\Console\Commands\SetupApplicationMenuCommand;
 use Illuminate\Console\Scheduling\Schedule;
 use Laravel\Lumen\Console\Kernel as ConsoleKernel;
+use App\Console\Commands\RefreshMenusTwoCommand;
+use App\Console\Commands\SetupApplicationMenuTwoCommand;
 
 class Kernel extends ConsoleKernel
 {
@@ -17,6 +19,8 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         SetupApplicationMenuCommand::class,
         RefreshMenusCommand::class,
+        RefreshMenusTwoCommand::class,
+        SetupApplicationMenuTwoCommand::class
     ];
 
     /**
