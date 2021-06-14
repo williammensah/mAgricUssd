@@ -26,8 +26,8 @@ trait Responses
             'msisdn' => request()->msisdn,
             'requestType' => 'CLEANUP',
             'sessionId' => request()->sessionId,
-            // 'currentMenu' => $currentMenu ?? 'ROOT',
-            // 'menuContent' => $menuContent,
+            'currentMenu' => $currentMenu ?? 'ROOT',
+            'menuContent' => $menuContent,
         ];
     }
 }
