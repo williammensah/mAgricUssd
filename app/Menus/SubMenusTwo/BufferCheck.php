@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Menus\SubMenus;
+namespace App\Menus\SubMenusTwo;
 
 use App\ScreenSession;
 use App\State\ClientState;
@@ -8,18 +8,21 @@ use App\State\UserState;
 use Log;
 use validator;
 
-class ConfirmationMessage extends ScreenSession
+class BufferCheck extends ScreenSession
 {
     /* You ask with the current menu name.
     eg. return Mobilenumber::ask(), current menu returned = enter_mobile_number
      */
 
-    public $menuName = 'confirmation_messsage';
+    public $menuName = 'buffer_check';
+
 
     public function ask()
     {
-        $content = $this->getMenuContent('confirmation_messsage');
+        $content = $this->getMenuContent('buffer_check');
         return $this->response($content, $this->menuName);
     }
+
+
 
 }

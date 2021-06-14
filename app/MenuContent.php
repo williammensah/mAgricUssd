@@ -17,7 +17,7 @@ trait MenuContent
     }
     public function invalidInput($message = null)
     {
-        return $message ?? "Invalid Input";
+        return $message ?? "Invalid Input".PHP_EOL;
     }
     public function getMenuContent($menuName = null): string
     {
@@ -26,6 +26,11 @@ trait MenuContent
         return $this->properties['customMessage'] ?? $message;
     }
 
+    public function prepend(& $string, $prefix) {
+        $string = substr_replace($string, $prefix, 0, 0);
+        return $string;
+    }
+    
     public function setAsPreviousMenu()
     {
         if (Menu::isBackRequest()) {

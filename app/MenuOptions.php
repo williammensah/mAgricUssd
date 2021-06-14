@@ -19,4 +19,12 @@ trait MenuOptions
     public $REFRESH = 1;
     public $NEXT = 2;
     public $OTHERCROP = 4;
+
+    public $BUY_PRODUCE = 1;
+    public $GIVE_ADVANCE = 2;
+    public $PURCHASE_HISTORY=3;
+    public $BUFFER_CHECK=4;
+    public $RESET_PIN=5;
+    public $EVACUATION = 1;
+    public $EVACUATION_PIN = 2;
 }

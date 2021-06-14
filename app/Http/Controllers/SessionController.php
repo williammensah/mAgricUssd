@@ -8,6 +8,7 @@ use App\Menus\MainMenu;
 use App\State\ClientState;
 use App\State\UserState;
 use Illuminate\Support\Facades\Artisan;
+use App\Classes\UssdShortCodes;
 use Log;
 
 class SessionController extends USSDController
@@ -18,10 +19,15 @@ class SessionController extends USSDController
     {
         Log::info((new UserState)->getState());
 
-        if (request()->requestType === 'INITIATION') {
+        $routeUserToMenu = (new UssdShortCodes)->routeMainMenu();
+        if ($routeUserToMenu) {
             Log::info('New Session Start', [request()->all()]);
-            return (new MainMenu)->index();
+            return $routeUserToMenu;
         }
+        // if (request()->requestType === 'INITIATION') {
+        //     Log::info('New Session Start', [request()->all()]);
+        //     return (new MainMenu)->index();
+        // }
         $clientState = new ClientState;
         $currentState = $clientState->getState();
         if ($currentState) {

@@ -14,17 +14,135 @@ class MomoTellerApi
         $this->url = config('services.momo_teller_api.url');
     }
 
+    public function purchasingClerk()
+    {
+        return  [
+            'responseCode' => 200,
+            'responseMessage' => 'success',
+            'data' => [
+                'name' => 'John Doe',
+                'total' => '5bags',
+                'balance' => '3bags 12kgs',
+                'role' => 'purchasing_clerk',
+                'limit' => '500',
+                'buffer' => '520'
+            ]
+        ];
+    }
 
+    public function evacuationUser()
+    {
+        return [
+            'responseCode' => 200,
+            'responseMessage' => 'success',
+            'data' => [
+                'name' => 'William Doe',
+                'role' => 'depot keeper'
+            ]
+        ];
+    }
+
+    public function lookUpPurchasingClerk($msisdn)
+    {
+        return Cache::remember($msisdn, $ttl = 60, function () {
+            $response =  $this->purchasingClerk();
+            if ($response && $response['responseCode'] == 200) {
+                return $response['data'];
+            }
+            Log::info('Did not get a success response  from lookup purchasing clerk');
+            return null;
+        });
+    }
+
+    public function purchasingClerkHistory()
+    {
+        return [
+            'responseCode' => 200,
+            'responseMessage' => 'transaction history successfully fetched',
+            'data' => [
+                [
+                    'clerk_id' => 10359,
+                    'transaction_id' => "20210323605A0021A2C44",
+                    'clerk_phone_number' => "233556304507",
+                    'bags' => "50",
+                    'created_at' => "2021-03-23 15:00:30"
+                ],
+                [
+                    'clerk_id' => 10359,
+                    'transaction_id' => "20210323605A0021A2C44",
+                    'clerk_phone_number' => "233556304507",
+                    'bags' => "50",
+                    'created_at' => "2021-04-23 15:00:30"
+                ],
+                [
+                    'clerk_id' => 10359,
+                    'transaction_id' => "20210323605A0021A2C44",
+                    'clerk_phone_number' => "233556304507",
+                    'bags' => "50",
+                    'created_at' => "2021-04-13 15:00:30"
+                ],
+                [
+                    'clerk_id' => 10359,
+                    'transaction_id' => "20210323605A0021A2C44",
+                    'clerk_phone_number' => "233556304507",
+                    'bags' => "50",
+                    'created_at' => "2021-05-23 15:00:30"
+                ],
+                [
+                    'clerk_id' => 10359,
+                    'transaction_id' => "20210323605A0021A2C44",
+                    'clerk_phone_number' => "233556304507",
+                    'bags' => "50",
+                    'created_at' => "2021-03-23 15:00:30"
+                ],
+                [
+                    'clerk_id' => 10359,
+                    'transaction_id' => "20210323605A0021A2C44",
+                    'clerk_phone_number' => "233556304507",
+                    'bags' => "50",
+                    'created_at' => "2021-03-23 15:00:30"
+                ]
+            ]
+        ];
+    }
+
+    public function getPurchasingClerkHistory()
+    {
+        $response = $this->purchasingClerkHistory();
+        if ($response && $response['responseCode'] == 200) {
+            return $response;
+        }
+    }
     public function lookupFarmer()
     {
         $response = [];
         $response['responseCode'] = 200;
-        $response['responseMessage'] = 'Operation Successfull';
+        $response['responseMessage'] = 'Operation Successful';
         $response['farmerName'] =  'Sammuel Enniful';
         if ($response['responseCode'] == 200) {
             return $response;
         }
         return false;
+    }
+
+    public function produce()
+    {
+        $data = [
+            'Cocoa',
+            'Coffee',
+            'Cashew'
+        ];
+        return $this->resetArrayIndexToStartFromOne($data);
+    }
+
+    public function pendingEvacuation()
+    {
+        $data = [
+            'Cocoa 24 bags',
+            'Coffee 50 bags',
+            'Cashew 64 bags'
+        ];
+        return $this->resetArrayIndexToStartFromOne($data);
     }
 
     public function getAvailableNetworks()
@@ -42,11 +160,10 @@ class MomoTellerApi
             // if ($response && $response['responseCode'] == 200) {
             //     return $response['data'];
             // }
-           return  $this->lookupFarmer();
+            return  $this->lookupFarmer();
             Log::info('Did not get a success from Agent Lookup');
             return null;
         });
-
     }
     public function cashDeposit($data)
     {
@@ -88,11 +205,11 @@ class MomoTellerApi
     {
         return array_filter(array_merge(array(0), $networks));
     }
-    public function formatNetworks($networks)
+    public function formatData($networks)
     {
         $netRes = '';
         foreach ($networks as $key => $network) {
-            $netRes .= "$key. $network<br>";
+            $netRes .= "$key. $network ".PHP_EOL;
         }
         return $netRes;
     }
