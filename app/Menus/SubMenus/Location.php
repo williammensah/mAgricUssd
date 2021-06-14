@@ -19,7 +19,9 @@ class Location extends ScreenSession
         ]);
         if ($validator->fails()) {
             Log::info('Validator failed for entering location', [$validator->errors()]);
-            return $this->response($this->invalidInput(), $this->menuName);
+            $content =$this->getMenuContent('enter_location');
+            $output = $this->prepend($content, $this->invalidInput());
+            return $this->response($output, $this->menuName);
         }
         (new ClientState)->setState($next, request()->all(), $state['flow']);
         (new UserState)->store(['location' => request()->userInput]);
