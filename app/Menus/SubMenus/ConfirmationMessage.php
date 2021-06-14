@@ -19,7 +19,8 @@ class ConfirmationMessage extends ScreenSession
     public function ask()
     {
         $content = $this->getMenuContent('confirmation_messsage');
-        return $this->response($content, $this->menuName);
+        // return $this->response($content, $this->menuName);
+        return $this->endSession();
     }
 
 }
